@@ -1,0 +1,23 @@
+<web-app metadata-complete="true" version="3.1"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	<!-- 修改servlet版本为3.1 -->
+	<!-- 配置DispatcherServlet -->
+	<servlet>
+		<servlet-name>seckill-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置springMVC需要加载的配置文件
+				spring-dao.xml,spring-service.xmk,spring-web.xml
+		 -->
+		 <init-param>
+		 	<param-name>contextConfigLocation</param-name>
+		 	<param-value>classpath:spring/spring-*.xml</param-value>
+		 </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>seckill-dispatcher</servlet-name>
+		<!-- "/"表示匹配所有的请求,"/"不是默认识别的，已在spring-web.xml配置 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	</web-app>

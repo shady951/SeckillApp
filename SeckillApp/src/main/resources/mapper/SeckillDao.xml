@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper 
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+		
+<mapper namespace="org.seckill.dao.SeckillDao">
+	<update id="reduceNumber">
+		UPDATE	 repository SET number = number - 1 
+		WHERE #{killTime} >= start_time
+		AND end_time >= #{killTime}
+		AND item_id = #{itemId}
+		AND number > 0; 
+	</update>
+	
+	<select id="queryById" resultType="Seckill">
+		SELECT item_id,name,number,create_time,start_time,end_time
+		FROM repository
+		WHERE #{itemId} = item_id;  
+	</select>
+	
+	<select id="queryAll" resultType="Seckill">
+		SELECT item_id,name,number,create_time,start_time,end_time
+		FROM repository
+		ORDER BY create_time 
+		DESC limit #{offset},#{limit};
+	<!-- DESC：从倒序开始查 -->
+	</select>
+</mapper>
+		

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper 
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+		
+<mapper namespace="org.seckill.dao.SuccessKilledDao">
+	<insert id="insertSuccessKilled">
+	<!-- ignore 为了在主键冲突时不会报错，而是更新0条影响 -->
+		INSERT ignore INTO success_killed(item_id,user_id, state) 
+		VALUES (#{itemId},#{userId}, 0);
+	</insert>		
+	
+	<!-- "***"为了让mybatis做区分，因为别名sk和r，在mybatis中不会被识别，它只会识别
+			别名后面的属性名，这样会造成属性名重复 -->
+	<select id="queryByIdWithSeckill" resultType="SuccessKilled">
+		SELECT r.item_id "seckill.itemId",r.name "seckill.name",r.number "seckill.number",r.create_time "seckill.createTime",
+		r.end_time "seckill.endTime",r.start_time"seckill.startTime",sk.item_id,sk.user_id,sk.state,sk.create_time
+		FROM repository r 
+		INNER JOIN success_killed sk ON r.item_id = sk.item_id
+		WHERE sk.item_id = #{itemId} AND sk.user_id = #{userId};
+	</select>
+</mapper>

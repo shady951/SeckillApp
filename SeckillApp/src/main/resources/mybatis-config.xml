@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE configuration 
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+		
+	<configuration>
+		<settings>
+			<!-- 使用jdbc的getGeneratedKeys 獲取數據庫自增主鍵值-->
+			<setting name = "useGeneratedKeys" value = "true" />
+			<!-- 使用列別名替換列名，默認true -->
+			<setting name="useColumnLabel" value="true"/>
+			<!-- 開啓駝峰命名轉換：Table（create_time）-> Entity（createTime） -->
+			<setting name="mapUnderscoreToCamelCase" value="true" />
+		</settings>
+		<!-- 
+		<mappers>
+			<mapper resource="mapper/SeckillDao.xml"/>
+			<mapper resource="mapper/SuccesskilledDao.xml"/>
+		</mappers>
+		 -->
+	</configuration>
+	
